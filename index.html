@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Workshop - Shruti Singh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b, #ec4899, #6366f1); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 12, 41, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+        }
+        
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .nav-badge {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            font-size: 0.9rem;
+            color: #fff;
+        }
+        
+        .trust-badge i {
+            color: #6366f1;
+        }
+        
+        .webinar-info {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn-register {
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+        
+        /* Hero Section */
+        #hero {
+            padding: 11rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+            isolation: isolate;
+        }
+        
+        .hero-content {
+            flex: 1;
+            animation: fadeInLeft 1s ease-out;
+        }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .typewriter-wrapper {
+            display: inline-block;
+        }
+        
+        .typewriter {
+            display: inline-block;
+            border-right: 3px solid #f59e0b;
+            padding-right: 5px;
+            animation: blink 0.75s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { border-color: #f59e0b; }
+            50% { border-color: transparent; }
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin: 1rem 0 2rem;
+            line-height: 1.6;
+        }
+        
+        .event-details {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .detail-item.date {
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            color: #fff;
+        }
+        
+        .detail-item.time {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #cbd5e1;
+        }
+        
+        .detail-item.live {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #cbd5e1;
+        }
+        
+        .detail-item.free {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #cbd5e1;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+        
+        .hero-orbital {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .orbital-system {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+            z-index: 1;
+        }
+        
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px dashed rgba(148, 163, 184, 0.15);
+            border-radius: 50%;
+            animation: rotateOrbit 60s linear infinite;
+        }
+        
+        .orbit-1 { width: 35%; height: 35%; }
+        .orbit-2 { width: 55%; height: 55%; animation-duration: 80s; }
+        .orbit-3 { width: 75%; height: 75%; animation-duration: 100s; }
+        
+        @keyframes rotateOrbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .central-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
+            border: 3px solid rgba(245, 158, 11, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+            z-index: 10;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 60px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 80px rgba(245, 158, 11, 0.5); }
+        }
+        
+        .central-hub-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .orbital-item {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .orbital-item:hover {
+            transform: scale(1.15);
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+        }
+        
+        .orbital-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .orbital-item h4 {
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .item-1 { top: 3%; left: 50%; transform: translateX(-50%); }
+        .item-2 { top: 50%; right: 0%; transform: translateY(-50%); }
+        .item-3 { bottom: 3%; left: 50%; transform: translateX(-50%); }
+        .item-4 { top: 50%; left: 0%; transform: translateY(-50%); }
+        
+        .icon-blue { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+        .icon-orange { background: linear-gradient(135deg, #f97316, #fb923c); }
+        .icon-purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .icon-yellow { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        
+        /* Stats Section */
+        #stats {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+        
+        /* Benefits Section */
+        #benefits {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #f59e0b, #ec4899);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .benefit-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        
+        /* Registration Section with Countdown */
+        #registration {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .registration-wrapper {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        
+        .countdown-section {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .countdown-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #6366f1;
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+        
+        .registration-section {
+            flex: 1;
+        }
+        
+        .registration-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .registration-card h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .event-info {
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+        
+        .form-group input::placeholder {
+            color: #64748b;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+        
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+        
+        .badge i {
+            color: #10b981;
+        }
+        
+        /* Comparison Section */
+        #comparison {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .comparison-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-header p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+        
+        .comparison-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .comparison-card.other {
+            border: 2px solid rgba(239, 68, 68, 0.5);
+        }
+        
+        .comparison-card.ours {
+            border: 2px solid rgba(16, 185, 129, 0.5);
+        }
+        
+        .comparison-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .comparison-list {
+            list-style: none;
+        }
+        
+        .comparison-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+        
+        .comparison-list li i {
+            margin-top: 0.2rem;
+            font-size: 1.2rem;
+        }
+        
+        .comparison-card.other li i {
+            color: #ef4444;
+        }
+        
+        .comparison-card.ours li i {
+            color: #10b981;
+        }
+        
+        /* Mentors Section */
+        #mentors {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .mentor-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .mentor-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+        }
+        
+        .mentor-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+            overflow: hidden;
+            border: 3px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        .mentor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .mentor-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .mentor-card .role {
+            font-size: 1rem;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .mentor-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* FAQ Section */
+        #faq {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .faq-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 0.8rem;
+        }
+        
+        .faq-header p {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .faq-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.1);
+        }
+        
+        .faq-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        
+        .faq-card h3 i {
+            color: #6366f1;
+            margin-top: 0.2rem;
+            font-size: 1rem;
+        }
+        
+        .faq-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(15, 12, 41, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 6rem;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .registration-wrapper {
+                flex-direction: column;
+            }
+            
+            .comparison-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .orbital-system {
+                max-width: 300px;
+            }
+            
+            .orbital-item {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .central-hub {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .registration-card {
+                padding: 2rem;
+            }
+            
+            .countdown-item {
+                min-width: 100px;
+                padding: 1rem 1.5rem;
+            }
+            
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                padding: 0.8rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .nav-badge {
+                display: none;
+            }
+            
+            .btn-register {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">techcadd.</div>
+            <div class="nav-right">
+                <div class="nav-badge">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Trusted by 10,000+ learners</span>
+                    </div>
+                    <div class="webinar-info">
+                        Free Webinar • Limited seats
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <a href="#registration" class="btn-register">Register Free</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <p class="gradient-text">Hello, I'm Shruti Singh</p>
+            <h1>The <span class="gradient-text typewriter-wrapper"><span class="typewriter" id="typewriter">Growth Catalyst</span></span> & Digital Marketing Strategist</h1>
+            <p>I help businesses scale their online presence, drive high-converting traffic, and maximize ROI through data-driven strategies.</p>
+            
+            <!-- Event Details -->
+            <div class="event-details">
+                <div class="detail-item date">
+                    <i class="fas fa-calendar"></i>
+                    27 Sep 2025
+                </div>
+                <div class="detail-item time">
+                    <i class="fas fa-clock"></i>
+                    4:00 PM IST
+                </div>
+                <div class="detail-item live">
+                    <i class="fas fa-video"></i>
+                    Live Online
+                </div>
+                <div class="detail-item free">
+                    <i class="fas fa-ticket-alt"></i>
+                    100% Free
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#registration" class="btn btn-primary">Register for Free Workshop <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-orbital">
+            <div class="orbital-system">
+                <div class="orbit orbit-3"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-1"></div>
+                
+                <div class="central-hub">
+                    <div class="central-hub-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Shruti</h3>
+                    <p style="font-size:0.8rem; color: #a0aec0;">Growth Hub</p>
+                </div>
+
+                <div class="orbital-item item-1">
+                    <div class="orbital-item-icon icon-blue"><i class="fas fa-search"></i></div>
+                    <h4>SEO Strategy</h4>
+                </div>
+                
+                <div class="orbital-item item-2">
+                    <div class="orbital-item-icon icon-orange"><i class="fas fa-chart-bar"></i></div>
+                    <h4>Data Analytics</h4>
+                </div>
+                
+                <div class="orbital-item item-3">
+                    <div class="orbital-item-icon icon-purple"><i class="fas fa-envelope"></i></div>
+                    <h4>Email Marketing</h4>
+                </div>
+                
+                <div class="orbital-item item-4">
+                    <div class="orbital-item-icon icon-yellow"><i class="fas fa-globe"></i></div>
+                    <h4>Content Strategy</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Success Stories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">₹50Cr+</div>
+                <div class="stat-label">Revenue Generated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">11+ Years</div>
+                <div class="stat-label">Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <h2 class="section-title">Tired of Job Insecurity? Learn Skills That <span class="gradient-text">Employers Actually Want</span></h2>
+        <p style="text-align: center; color: #94a3b8; max-width: 900px; margin: 0 auto 3rem; font-size: 1.1rem;">
+            AI is revolutionizing the job market, and companies are actively hiring professionals with AI skills. Whether you work in tech, marketing, business, or a non-technical field, learning artificial intelligence is no longer optional—it's essential for career growth and job security.
+        </p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon icon-blue">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Literacy</h3>
+                <p>Build basic AI literacy to stay relevant in today's job market. AI knowledge opens new career doors across industries.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon icon-purple">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Job Security</h3>
+                <p>AI skills boost job security in an automated world. Employers want professionals who can work alongside AI.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon icon-green">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Future Skills</h3>
+                <p>Learn future skills to adapt to AI and automation trends. Stay competitive and ready for evolving job roles.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon icon-yellow">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Career Growth</h3>
+                <p>Use AI expertise to speed up career growth. Master AI tools and access better job opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section with Countdown -->
+    <section id="registration">
+        <div class="registration-wrapper">
+            <!-- Left Side - Countdown -->
+            <div class="countdown-section">
+                <h2 class="countdown-title">Session Starts In:</h2>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                
+                <!-- Mentors Section -->
+                <div id="mentors" style="padding-top: 3rem;">
+                    <div class="mentors-grid">
+                        <div class="mentor-card">
+                            <div class="mentor-image">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" alt="Shruti Singh">
+                            </div>
+                            <h3>Shruti Singh</h3>
+                            <div class="role">Lead Digital Marketing Strategist</div>
+                            <p>11+ years helping businesses scale with data-driven strategies & ROI-focused campaigns.</p>
+                        </div>
+                        <div class="mentor-card">
+                            <div class="mentor-image">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" alt="Rahul Sharma">
+                            </div>
+                            <h3>Rahul Sharma</h3>
+                            <div class="role">SEO & Content Expert</div>
+                            <p>Specialist in organic growth, SEO optimization, and high-converting content strategies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Registration Form -->
+            <div class="registration-section">
+                <div class="registration-card">
+                    <h2>Hold Your Seat</h2>
+                    <div class="event-info">
+                        27 Sep 2025 • 4:00 PM IST • Live Online
+                    </div>
+                    <p class="form-subtitle">Limited availability! Complete the form below to secure your spot.</p>
+                    
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>WhatsApp Number *</label>
+                        <input type="tel" placeholder="10-digit number (India)" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" placeholder="Enter your city" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <button class="submit-btn">
+                        <i class="fas fa-rocket"></i>
+                        Reserve My Free Seat
+                    </button>
+                    
+                    <div class="security-badges">
+                        <div class="badge">
+                            <i class="fas fa-lock"></i>
+                            100% Privacy Protected
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-shield-alt"></i>
+                            Zero Spam Promise
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison">
+        <div class="comparison-header">
+            <h2>Why Choose This Free Session Over <span class="gradient-text">Standard Webinars</span></h2>
+            <p>Experience the Clear Difference Between Ordinary Webinars and Our Live Interactive Session.</p>
+        </div>
+        <div class="comparison-grid">
+            <div class="comparison-card other">
+                <h3>Other Webinars</h3>
+                <ul class="comparison-list">
+                    <li>
+                        <i class="fas fa-times"></i>
+                        <span>Dragged-out introductions</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-times"></i>
+                        <span>Heavy on theory, light on action</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-times"></i>
+                        <span>Feels more like a sales pitch</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-times"></i>
+                        <span>Lack of real-world examples</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-times"></i>
+                        <span>Overly complex strategies</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="comparison-card ours">
+                <h3>Our Webinar</h3>
+                <ul class="comparison-list">
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Straight to the point from the start</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Practical, step-by-step learning</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Focused on actionable strategies</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Backed with real case studies</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Simple, beginner-friendly approach</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="faq-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Here are answers to the most common questions. Still have doubts? We'll clear everything live in the session.</p>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    What is this free AI webinar about?
+                </h3>
+                <p>This session is designed to help beginners and professionals understand how Artificial Intelligence can be used to generate income. You'll learn simple AI concepts and explore practical earning opportunities.</p>
+            </div>
+            <div class="faq-card">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    Who can join this AI webinar?
+                </h3>
+                <p>Anyone who wants to explore earning with AI can attend—students, freelancers, job seekers, business owners, or working professionals. No prior technical knowledge is required.</p>
+            </div>
+            <div class="faq-card">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    Do I need coding or advanced skills to attend?
+                </h3>
+                <p>Not at all. The webinar is beginner-friendly and explains how you can use ready-to-use AI tools and strategies to create income sources without deep technical expertise.</p>
+            </div>
+            <div class="faq-card">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    What kind of earning opportunities will be discussed?
+                </h3>
+                <p>The webinar covers freelancing with AI tools, creating digital content, automating small business tasks, offering AI-based services, and other practical income methods.</p>
+            </div>
+            <div class="faq-card">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    Why should I choose this webinar over others?
+                </h3>
+                <p>Unlike typical sessions that focus on theory, this webinar is action-oriented. You'll see real examples, step-by-step guidance, and practical strategies you can start using right away.</p>
+            </div>
+            <div class="faq-card">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    Is the AI webinar really free?
+                </h3>
+                <p>Yes. There are no hidden costs—just register online and join the live session at no charge.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">DIGITALMARKETING</div>
+            <p class="footer-text">Empowering businesses with data-driven digital marketing strategies.<br>Transform your online presence and maximize ROI with expert guidance.</p>
+            <div class="footer-social">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Digital Marketing Workshop. All rights reserved. | Designed with ❤️ by Shruti Singh
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter Effect
+        const text = "Growth Catalyst";
+        const typewriterElement = document.getElementById("typewriter");
+        let index = 0;
+        
+        typewriterElement.textContent = "";
+        
+        function typeWriter() {
+            if (index < text.length) {
+                typewriterElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        
+        setTimeout(typeWriter, 500);
+
+        // Countdown Timer
+        const countdownDate = new Date("Sep 27, 2025 16:00:00").getTime();
+        
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+            }
+        }, 1000);
+
+        // Form Submission
+        document.querySelector('.submit-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Thank you for registering! We will send you the workshop details soon.');
+        });
+    </script>
+</body>
+</html>

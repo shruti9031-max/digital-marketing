@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Hero Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- 1. RESET AND GENERAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b, #ec4899, #6366f1); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .search-icon {
+            padding: 0.5rem;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .search-icon:hover {
+            color: #f59e0b;
+        }
+        .btn-contact {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #f59e0b;
+        }
+
+        /* --- 2. HERO SECTION LAYOUT & ANIMATION --- */
+        #hero {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .hero-content {
+            flex: 1;
+            animation: fadeInLeft 1s ease-out;
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Typewriter Effect */
+        .typewriter-wrapper {
+            display: inline-block;
+        }
+        .typewriter {
+            display: inline-block;
+            border-right: 3px solid #f59e0b;
+            padding-right: 5px;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { border-color: #f59e0b; }
+            50% { border-color: transparent; }
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin: 1rem 0 2rem;
+            line-height: 1.6;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-orbital {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease-out;
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- 3. ORBITAL SYSTEM (Marketing Focus) --- */
+        .orbital-system {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+        }
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px dashed rgba(148, 163, 184, 0.15);
+            border-radius: 50%;
+            animation: rotateOrbit 60s linear infinite;
+        }
+        .orbit-1 { width: 35%; height: 35%; }
+        .orbit-2 { width: 55%; height: 55%; animation-duration: 80s; }
+        .orbit-3 { width: 75%; height: 75%; animation-duration: 100s; }
+        @keyframes rotateOrbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .central-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
+            border: 3px solid rgba(245, 158, 11, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.3), inset 0 0 40px rgba(245, 158, 11, 0.1);
+            z-index: 10;
+            animation: pulse 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+        .central-hub-icon {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; margin-bottom: 0.6rem;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+        }
+        .central-hub h3 { font-size: 1.1rem; color: #fff; font-weight: 600; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 60px rgba(245, 158, 11, 0.3), inset 0 0 40px rgba(245, 158, 11, 0.1); }
+            50% { box-shadow: 0 0 80px rgba(245, 158, 11, 0.5), inset 0 0 60px rgba(245, 158, 11, 0.2); }
+        }
+        .orbital-item {
+            position: absolute; width: 100px; height: 100px; border-radius: 50%;
+            background: rgba(15, 23, 42, 0.9); border: 2px solid rgba(148, 163, 184, 0.3);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 0.8rem; text-align: center; backdrop-filter: blur(10px);
+            transition: all 0.3s ease; cursor: pointer; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .orbital-item:hover { transform: scale(1.15); border-color: rgba(245, 158, 11, 0.6); box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4); z-index: 15; }
+        .orbital-item-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin-bottom: 0.4rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .orbital-item h4 { font-size: 0.75rem; color: #fff; font-weight: 600; }
+        .item-1 { top: 3%; left: 50%; transform: translateX(-50%); animation: orbitItem 20s linear infinite; }
+        .item-2 { top: 18%; right: 8%; animation: orbitItem 25s linear infinite; animation-delay: -5s; }
+        .item-3 { top: 50%; right: 0%; transform: translateY(-50%); animation: orbitItem 30s linear infinite; animation-delay: -10s; }
+        .item-4 { bottom: 13%; right: 10%; animation: orbitItem 22s linear infinite; animation-delay: -15s; }
+        .item-5 { bottom: 3%; left: 50%; transform: translateX(-50%); animation: orbitItem 28s linear infinite; animation-delay: -20s; }
+        .item-6 { bottom: 13%; left: 10%; animation: orbitItem 24s linear infinite; animation-delay: -8s; }
+        .item-7 { top: 50%; left: 0%; transform: translateY(-50%); animation: orbitItem 26s linear infinite; animation-delay: -12s; }
+        .item-8 { top: 18%; left: 8%; animation: orbitItem 23s linear infinite; animation-delay: -18s; }
+        @keyframes orbitItem {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(2deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(10px) rotate(-2deg); }
+        }
+        .icon-blue { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+        .icon-pink { background: linear-gradient(135deg, #ec4899, #f472b6); }
+        .icon-orange { background: linear-gradient(135deg, #f97316, #fb923c); }
+        .icon-green { background: linear-gradient(135deg, #10b981, #34d399); }
+        .icon-purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .icon-yellow { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .icon-cyan { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+        .icon-red { background: linear-gradient(135deg, #ef4444, #f87171); }
+
+        /* --- 4. RESPONSIVE LAYOUT --- */
+        @media (max-width: 1024px) {
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 6rem;
+            }
+            .hero-content {
+                flex: none;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .orbital-system { max-width: 300px; }
+            .orbital-item { width: 70px; height: 70px; }
+            .orbital-item h4 { font-size: 0.6rem; }
+            .central-hub { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+   <nav>
+        <div class="nav-container">
+            <div class="logo">DIGITALMARKETING</div>
+            <div class="nav-actions">
+                <div class="search-icon"><i class="fas fa-search"></i></div>
+                <a href="#contact" class="btn-contact">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+    <section id="hero">
+        <div class="hero-content">
+            <p class="gradient-text">Hello, I'm Shruti Singh</p>
+            <h1>The <span class="gradient-text typewriter-wrapper"><span class="typewriter" id="typewriter">Growth Catalyst</span></span> & Digital Marketing Strategist</h1>
+            <p>I help businesses scale their online presence, drive high-converting traffic, and maximize ROI through data-driven strategies.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Success Stories <i class="fas fa-chart-line"></i></a>
+                <a href="#contact" class="btn btn-secondary">Book a Consultation</a>
+            </div>
+        </div>
+
+        <div class="hero-orbital">
+            <div class="orbital-system">
+                <div class="orbit orbit-3"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-1"></div>
+                
+                <div class="central-hub">
+                    <div class="central-hub-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Shruti</h3>
+                    <p style="font-size:0.8rem; color: #a0aec0;">Growth Hub</p>
+                </div>
+
+                <div class="orbital-item item-1">
+                    <div class="orbital-item-icon icon-blue"><i class="fas fa-search"></i></div>
+                    <h4>SEO Strategy</h4>
+                </div>
+               
+                <div class="orbital-item item-3">
+                    <div class="orbital-item-icon icon-orange"><i class="fas fa-chart-bar"></i></div>
+                    <h4>Data Analytics</h4>
+                </div>
+                <div class="orbital-item item-5">
+                    <div class="orbital-item-icon icon-purple"><i class="fas fa-envelope"></i></div>
+                    <h4>Email Marketing</h4>
+                </div>
+                <div class="orbital-item item-6">
+                    <div class="orbital-item-icon icon-yellow"><i class="fas fa-globe"></i></div>
+                    <h4>Content Strategy</h4>
+                </div>
+              
+                <div class="orbital-item item-8">
+                    <div class="orbital-item-icon icon-red"><i class="fas fa-code-branch"></i></div>
+                    <h4>Affiliate Mgmt</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Typewriter Effect
+        const text = "Growth Catalyst";
+        const typewriterElement = document.getElementById("typewriter");
+        let index = 0;
+        
+        typewriterElement.textContent = "";
+        
+        function typeWriter() {
+            if (index < text.length) {
+                typewriterElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        
+        // Start typing after page loads
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>
