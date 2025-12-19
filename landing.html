@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobYaari - Find Your Dream Government Job</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E73DA;
+            --primary-dark: #1557b0;
+            --secondary: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --border: #E5E7EB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--text-dark);
+            background: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1E73DA 0%, #1557b0 100%);
+            color: white;
+            padding: 16px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            background: white;
+            color: var(--primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .menu-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 50px 14px 44px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 20px;
+        }
+
+        .voice-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .quick-actions::-webkit-scrollbar {
+            display: none;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+        }
+
+        .action-btn.telegram {
+            background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+            box-shadow: 0 2px 6px rgba(0, 136, 204, 0.3);
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            scrollbar-width: none;
+            position: sticky;
+            top: 104px;
+            z-index: 50;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            padding: 14px 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 15px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Job Card */
+        .job-card {
+            background: white;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .job-card:active {
+            transform: scale(0.98);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .job-badge {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            color: #92400E;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .job-badge.hot {
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+            color: #991B1B;
+        }
+
+        .job-badge.new {
+            background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+            color: #1E40AF;
+        }
+
+        .bookmark {
+            background: var(--bg-light);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-light);
+        }
+
+        .job-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .job-org {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .job-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .stat-icon {
+            color: var(--primary);
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .deadline {
+            font-size: 13px;
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .deadline.safe {
+            color: var(--secondary);
+        }
+
+        .apply-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .apply-btn:active {
+            background: var(--primary-dark);
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:active {
+            transform: scale(0.95);
+            background: var(--bg-light);
+        }
+
+        .category-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .category-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* State List */
+        .state-list {
+            padding: 20px;
+        }
+
+        .state-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .state-item:active {
+            background: var(--bg-light);
+        }
+
+        .state-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .state-count {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .view-all {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(30, 115, 218, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Content spacing for bottom nav */
+        .main-content {
+            padding-bottom: 80px;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .category-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">
+                <div class="logo-icon">JY</div>
+                <span>JobYaari</span>
+            </div>
+            <button class="menu-btn">☰</button>
+        </div>
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search jobs, exams, results...">
+            <span class="voice-icon">🎤</span>
+        </div>
+    </header>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <button class="action-btn">
+            📱 WhatsApp
+        </button>
+        <button class="action-btn telegram">
+            ✈️ Telegram
+        </button>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('jobs')">🔥 Hot Jobs</button>
+        <button class="tab" onclick="switchTab('results')">🏆 Results</button>
+        <button class="tab" onclick="switchTab('admit')">📋 Admit Card</button>
+        <button class="tab" onclick="switchTab('categories')">📚 Categories</button>
+        <button class="tab" onclick="switchTab('states')">📍 States</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hot Jobs Tab -->
+        <div id="jobs" class="tab-content active">
+            <div class="section-header">
+                <h2 class="section-title">Hot Jobs This Week</h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge hot">🔥 Trending</span>
+                    <button class="bookmark">🔖</button>
+                </div>
+                <h3 class="job-title">RRB Group D Recruitment</h3>
+                <p class="job-org">Railway Recruitment Board</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">👥</span>
+                        <span>41,424 Posts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">🎓</span>
+                        <span>10th Pass</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">📍</span>
+                        <span>All India</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline">⏰ 5 days left</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge new">✨ New</span>
+                    <button class="bookmark">🔖</button>
+                </div>
+                <h3 class="job-title">SSC GD Constable</h3>
+                <p class="job-org">Staff Selection Commission</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">👥</span>
+                        <span>25,487 Posts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">🎓</span>
+                        <span>10th Pass</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">📍</span>
+                        <span>All India</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">⏰ 15 days left</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge">⚡ High Salary</span>
+                    <button class="bookmark">🔖</button>
+                </div>
+                <h3 class="job-title">UP Anganwadi Bharti 2025</h3>
+                <p class="job-org">Uttar Pradesh Government</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">👥</span>
+                        <span>57,862 Posts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">🎓</span>
+                        <span>12th Pass</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">📍</span>
+                        <span>Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">⏰ 20 days left</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge new">✨ New</span>
+                    <button class="bookmark">🔖</button>
+                </div>
+                <h3 class="job-title">BSSC Inter Level Form</h3>
+                <p class="job-org">Bihar Staff Selection Commission</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">👥</span>
+                        <span>23,175 Posts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">🎓</span>
+                        <span>12th Pass</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">📍</span>
+                        <span>Bihar</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">⏰ 12 days left</span>
+                    <button class="apply-btn">Apply Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Tab -->
+        <div id="results" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">Latest Results</h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge hot">🔥 Just Released</span>
+                </div>
+                <h3 class="job-title">UPSC IAS 2024 Final Result</h3>
+                <p class="job-org">Union Public Service Commission</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">📅</span>
+                        <span>Released Today</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">👥</span>
+                        <span>1000+ Selections</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">✅ Available Now</span>
+                    <button class="apply-btn">Download</button>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge new">✨ New</span>
+                </div>
+                <h3 class="job-title">SSC CHSL 2024 Tier 1 Result</h3>
+                <p class="job-org">Staff Selection Commission</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">📅</span>
+                        <span>Released Yesterday</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">✅ Check Now</span>
+                    <button class="apply-btn">Download</button>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <h3 class="job-title">UP Police Constable Result 2025</h3>
+                <p class="job-org">Uttar Pradesh Police</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">📅</span>
+                        <span>2 days ago</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">✅ Available</span>
+                    <button class="apply-btn">Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admit Card Tab -->
+        <div id="admit" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">Latest Admit Cards</h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge hot">🔥 Active</span>
+                </div>
+                <h3 class="job-title">CRPF Constable Tradesman</h3>
+                <p class="job-org">Central Reserve Police Force</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">📅</span>
+                        <span>Exam: 20 Aug 2025</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">✅ Download Now</span>
+                    <button class="apply-btn">Get Card</button>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <span class="job-badge new">✨ New</span>
+                </div>
+                <h3 class="job-title">UGC NET June 2025</h3>
+                <p class="job-org">University Grants Commission</p>
+                <div class="job-stats">
+                    <div class="stat">
+                        <span class="stat-icon">📅</span>
+                        <span>Multiple Servers</span>
+                    </div>
+                </div>
+                <div class="job-footer">
+                    <span class="deadline safe">✅ Available</span>
+                    <button class="apply-btn">Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Tab -->
+        <div id="categories" class="tab-content">
+            <h2 class="section-title" style="padding: 0 20px;">Choose Your Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">🏫</div>
+                    <div class="category-name">10th Pass</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎓</div>
+                    <div class="category-name">12th Pass</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔧</div>
+                    <div class="category-name">ITI</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">⚙️</div>
+                    <div class="category-name">Polytechnic</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👨‍💻</div>
+                    <div class="category-name">Engineering</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <div class="category-name">Arts</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🧪</div>
+                    <div class="category-name">Science</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💼</div>
+                    <div class="category-name">Commerce</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <div class="category-name">Education</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💊</div>
+                    <div class="category-name">Pharmacy</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🩺</div>
+                    <div class="category-name">Medical</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">⚖️</div>
+                    <div class="category-name">Law</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- States Tab -->
+        <div id="states" class="tab-content">
+            <div class="section-header" style="padding: 0 20px;">
+                <h2 class="section-title">Jobs by State</h2>
+            </div>
+            <div class="state-list">
+                <div class="state-item">
+                    <span class="state-name">📍 Uttar Pradesh</span>
+                    <span class="state-count">2,341 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 Bihar</span>
+                    <span class="state-count">1,892 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 Maharashtra</span>
+                    <span class="state-count">1,654 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 Rajasthan</span>
+                    <span class="state-count">1,432 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 West Bengal</span>
+                    <span class="state-count">1,287 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 Madhya Pradesh</span>
+                    <span class="state-count">1,156 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 Karnataka</span>
+                    <span class="state-count">1,045 Jobs →</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-name">📍 Gujarat</span>
+                    <span class="state-count">982 Jobs →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab">🔔</button>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">💼</span>
+            <span>Jobs</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">📋</span>
+            <span>Applications</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">🔖</span>
+            <span>Saved</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Profile</span>
+        </a>
+    </nav>
